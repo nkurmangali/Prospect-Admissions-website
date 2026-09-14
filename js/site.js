@@ -56,18 +56,16 @@ document.querySelectorAll('.faq-list').forEach(function (list) {
   document.querySelectorAll('.gallery').forEach(function (el) {
     var wrap = el.closest('[data-gallery-wrap]') || el.parentElement;
     galleries[el.id] = new Swiper(el.querySelector('.swiper'), {
-      slidesPerView: 1.25,
+      slidesPerView: el.id === 'gallery-reviews' ? 1.25 : 1.08,
       spaceBetween: 16,
       grabCursor: true,
       navigation: {
         nextEl: wrap.querySelector('.gallery-next'),
         prevEl: wrap.querySelector('.gallery-prev'),
       },
-      breakpoints: {
-        560: { slidesPerView: 2.2 },
-        900: { slidesPerView: 3.2 },
-        1180: { slidesPerView: 4 },
-      },
+      breakpoints: el.id === 'gallery-reviews'
+        ? { 560: { slidesPerView: 2.2 }, 900: { slidesPerView: 3.2 }, 1180: { slidesPerView: 4 } }
+        : { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
     });
   });
 
